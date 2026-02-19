@@ -24,6 +24,7 @@ import {
   SampleNuscenesDataSourceFactory,
   UlogLocalDataSourceFactory,
   VelodyneDataSourceFactory,
+  RosApiDataSourceFactory,
 } from "@lichtblick/suite-base";
 
 import { DesktopExtensionLoader } from "./services/DesktopExtensionLoader";
@@ -97,6 +98,7 @@ export default function Root(props: RootProps): React.JSX.Element {
       new SampleNuscenesDataSourceFactory(),
       new McapLocalDataSourceFactory(),
       new RemoteDataSourceFactory(),
+      new RosApiDataSourceFactory(),
     ];
 
     return sources;

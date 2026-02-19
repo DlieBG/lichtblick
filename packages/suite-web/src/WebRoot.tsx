@@ -21,6 +21,7 @@ import {
   Ros2LocalBagDataSourceFactory,
   RosbridgeDataSourceFactory,
   SampleNuscenesDataSourceFactory,
+  RosApiDataSourceFactory,
   SharedRoot,
   UlogLocalDataSourceFactory,
 } from "@lichtblick/suite-base";
@@ -68,6 +69,7 @@ export function WebRoot(props: {
       new SampleNuscenesDataSourceFactory(),
       new McapLocalDataSourceFactory(),
       new RemoteDataSourceFactory(),
+      new RosApiDataSourceFactory(),
     ];
 
     return props.dataSources ?? sources;

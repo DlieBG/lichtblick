@@ -27,4 +27,5 @@ export type RegisteredIconNames =
   | "Settings"
   | "Sparkle"
   | "Variable2"
-  | "ROS";
+  | "ROS"
+  | "AUDI";

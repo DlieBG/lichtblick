@@ -3,12 +3,24 @@ import { BrowserRouter, NavLink, Route, Routes } from "react-router";
 import Audi from "./assets/audi.svg";
 import { Button, CircularProgress, Typography } from "@mui/material";
 import HomeIcon from '@mui/icons-material/Home';
+import { getOidcConfig, OidcConfig } from "@lichtblick/suite-base/util/auth";
+import { Ros } from "@lichtblick/roslibjs";
 
 export function AuthWrapper({ children }: { children: React.ReactNode }): React.JSX.Element {
+    const [oidcConfig, setOidcConfig] = React.useState<OidcConfig | null>(null);
 
-    const oidcConfig: AuthProviderProps = {
-        authority: "https://sso.bschwering.de/application/o/lichtblick-dev/",
-        client_id: "oWrQ5Mc2Oj3Ex2bDGmO3EzadBGSeK3NyTAZsleAo",
+    React.useEffect(() => {
+        getOidcConfig().then(setOidcConfig);
+    }, []);
+
+    if (!oidcConfig) {
+        return (
+            <></>
+        );
+    }
+
+    const oidcConfigProps: AuthProviderProps = {
+        ...oidcConfig,
         redirect_uri: window.location.origin + "/login",
         scope: "openid profile email",
         loadUserInfo: true,
@@ -20,7 +32,7 @@ export function AuthWrapper({ children }: { children: React.ReactNode }): React.
     };
 
     return (
-        <AuthProvider {...oidcConfig}>
+        <AuthProvider {...oidcConfigProps}>
             <AuthRouter>
                 {children}
             </AuthRouter>
@@ -29,6 +41,13 @@ export function AuthWrapper({ children }: { children: React.ReactNode }): React.
 }
 
 function AuthRouter({ children }: { children: React.ReactNode }): React.JSX.Element {
+    const [rosApiDataSourceActive, setRosApiDataSourceActive] = React.useState(false);
+
+    React.useEffect(() => {
+        const params = new URLSearchParams(window.location.search);
+        setRosApiDataSourceActive(params.get("ds") === "ros-api");
+    }, [window.location.search]);
+
     const auth = useAuth();
 
     return (
@@ -78,6 +97,9 @@ function AuthRouter({ children }: { children: React.ReactNode }): React.JSX.Elem
                                         </Typography>
                                     </div>
                                 )}
+                                {!auth.isAuthenticated && rosApiDataSourceActive && auth.signinRedirect({
+                                    state: window.location.search
+                                })}
                                 <NavLink to="/">
                                     <Button variant="outlined" startIcon={<HomeIcon />}>
                                         Home

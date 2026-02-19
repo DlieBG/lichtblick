@@ -32,6 +32,7 @@ import { RegisteredIconNames } from "@lichtblick/suite-base/types/Icons";
 import DatabaseSettings from "../assets/database-settings.svg";
 import PanelLayout from "../assets/panel-layout.svg";
 import PanelSettings from "../assets/panel-settings.svg";
+import Audi from "../assets/audi.svg";
 
 const icons: {
   // This makes it a type error to forget to add an icon here once it has been added to RegisteredIconNames.
@@ -59,6 +60,7 @@ const icons: {
   Sparkle: <Sparkle20Regular />,
   Variable2: <BracesVariable20Regular />,
   ROS: <GridDots20Filled />,
+  AUDI: <Audi />,
 };
 
 export default icons;
