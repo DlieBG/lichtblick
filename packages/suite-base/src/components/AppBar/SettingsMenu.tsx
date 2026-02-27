@@ -5,13 +5,14 @@
 // License, v2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/
 
-import { Menu, MenuItem, PaperProps, PopoverPosition, PopoverReference } from "@mui/material";
+import { Avatar, Divider, Menu, MenuItem, PaperProps, PopoverPosition, PopoverReference } from "@mui/material";
 import { useCallback } from "react";
 import { useTranslation } from "react-i18next";
 import { makeStyles } from "tss-react/mui";
 
 import { AppSettingsTab } from "@lichtblick/suite-base/components/AppSettingsDialog/types";
 import { useWorkspaceActions } from "@lichtblick/suite-base/context/Workspace/useWorkspaceActions";
+import { useAuth } from "react-oidc-context";
 
 const useStyles = makeStyles()({
   menuList: {
@@ -41,6 +42,8 @@ export function SettingsMenu({
 
   const { dialogActions } = useWorkspaceActions();
 
+  const auth = useAuth();
+
   const onSettingsClick = useCallback(
     (tab?: AppSettingsTab) => {
       dialogActions.preferences.open(tab);
@@ -68,6 +71,43 @@ export function SettingsMenu({
           } as Partial<PaperProps & { "data-tourid"?: string }>,
         }}
       >
+        {auth.isAuthenticated ? (
+          <>
+            <MenuItem>
+              <Avatar
+                style={{
+                  marginRight: 12,
+                }}
+              />
+              <p>
+                {auth.user?.profile.name}<br/>
+                <small>
+                  {auth.user?.profile.email}
+                </small>
+              </p>
+            </MenuItem>
+            <MenuItem
+              onClick={() => {
+                auth.signoutRedirect();
+              }}
+            >
+              Logout
+            </MenuItem>
+          </>
+        ) : (
+          <MenuItem
+            onClick={() => {
+              auth.signinRedirect({
+                state: window.location.search
+              });
+            }}
+          >
+            Login
+          </MenuItem>
+        )}
+
+        <Divider />
+
         <MenuItem
           onClick={() => {
             onSettingsClick();

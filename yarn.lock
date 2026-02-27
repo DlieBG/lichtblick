@@ -9077,6 +9077,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"cookie@npm:^1.0.1":
+  version: 1.1.1
+  resolution: "cookie@npm:1.1.1"
+  checksum: e40c4ff817a73ec0a41413654ca9a71e6207bd6e511151bb1d307aef2903eb59771127a85474afe0e12a8982804f7b03cce0bda798b55c306aca9608b4b9acab
+  languageName: node
+  linkType: hard
+
 "cookie@npm:~0.7.1":
   version: 0.7.2
   resolution: "cookie@npm:0.7.2"
@@ -14733,6 +14740,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"jwt-decode@npm:^4.0.0":
+  version: 4.0.0
+  resolution: "jwt-decode@npm:4.0.0"
+  checksum: 390e2edcb31a92e86c8cbdd1edeea4c0d62acd371f8a8f0a8878e499390c0ecf4c658b365c4e941e4ef37d0170e4ca650aaa49f99a45c0b9695a235b210154b0
+  languageName: node
+  linkType: hard
+
 "keyv@npm:^4.0.0, keyv@npm:^4.5.3":
   version: 4.5.4
   resolution: "keyv@npm:4.5.4"
@@ -14879,9 +14893,12 @@ __metadata:
     jest: 30.2.0
     jest-environment-jsdom: 30.2.0
     license-checker: 25.0.1
+    oidc-client-ts: 3.4.1
     playwright: 1.55.1
     prettier: 3.6.2
+    react-oidc-context: 3.3.0
     react-refresh: 0.14.2
+    react-router: 7.13.1
     react-use: 17.6.0
     rehype-raw: 7.0.0
     rimraf: 6.0.1
@@ -16648,6 +16665,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"oidc-client-ts@npm:3.4.1":
+  version: 3.4.1
+  resolution: "oidc-client-ts@npm:3.4.1"
+  dependencies:
+    jwt-decode: ^4.0.0
+  checksum: 3c0298e11a5ae89131c4a0a77699dabc7470e68a7128d19a30321a629e0fb0a777138eb14c0c68e01fd645b56b19b55f26cb2f6a6de2b832e79bdc0eb764a1e1
+  languageName: node
+  linkType: hard
+
 "on-finished@npm:^2.4.1, on-finished@npm:~2.4.1":
   version: 2.4.1
   resolution: "on-finished@npm:2.4.1"
@@ -18018,6 +18044,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"react-oidc-context@npm:3.3.0":
+  version: 3.3.0
+  resolution: "react-oidc-context@npm:3.3.0"
+  peerDependencies:
+    oidc-client-ts: ^3.1.0
+    react: ">=16.14.0"
+  checksum: c36472af38132c15066d49a091415f2326f1c37e03513fe26fe7dcdc9321919a7661e9f739fbefe0cdae1fdf184b416979deea267343d9d9af16bece18b34d9a
+  languageName: node
+  linkType: hard
+
 "react-refresh-typescript@npm:2.0.10":
   version: 2.0.10
   resolution: "react-refresh-typescript@npm:2.0.10"
@@ -18053,6 +18089,22 @@ __metadata:
   peerDependencies:
     react: ^18.0.0 || ^19.0.0
   checksum: c6f98a23fcefd1737c75fabce95af7d958ab4f38fb96be1150e8bee7c91267b8e1d75d84491ce0c3366c051ef20686d788506f577430d964ed2aed0b51c2d459
+  languageName: node
+  linkType: hard
+
+"react-router@npm:7.13.1":
+  version: 7.13.1
+  resolution: "react-router@npm:7.13.1"
+  dependencies:
+    cookie: ^1.0.1
+    set-cookie-parser: ^2.6.0
+  peerDependencies:
+    react: ">=18"
+    react-dom: ">=18"
+  peerDependenciesMeta:
+    react-dom:
+      optional: true
+  checksum: 159e7fa3fbec7fc0273064bb54fd4d395e21f84ae5cb21d57fb6c53bfc274d9879918001ceb4f4a1f28f0e4dd41865b82366b88f027ba17243ee592a676c9ef2
   languageName: node
   linkType: hard
 
@@ -19145,6 +19197,13 @@ __metadata:
     parseurl: ~1.3.3
     send: ~0.19.1
   checksum: ec7599540215e6676b223ea768bf7c256819180bf14f89d0b5d249a61bbb8f10b05b2a53048a153cb2cc7f3b367f1227d2fb715fe4b09d07299a9233eda1a453
+  languageName: node
+  linkType: hard
+
+"set-cookie-parser@npm:^2.6.0":
+  version: 2.7.2
+  resolution: "set-cookie-parser@npm:2.7.2"
+  checksum: 9e1b09e7184079c81f9ba4d2db3222854adf4e6e4fe73982388367649386a93e7f9b979333ddeba22610706def93c2478f34c3324fe223528cb2c4c879a2c2d3
   languageName: node
   linkType: hard
 

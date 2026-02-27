@@ -54,7 +54,7 @@ export const devServerConfig = (params: ConfigParams): WebpackConfiguration => (
     static: {
       directory: params.outputPath,
     },
-    historyApiFallback: params.historyApiFallback,
+    historyApiFallback: true, // params.historyApiFallback,
     hot: true,
     // The problem and solution are described at <https://github.com/webpack/webpack-dev-server/issues/1604>.
     // When running in dev mode two errors are logged to the dev console:

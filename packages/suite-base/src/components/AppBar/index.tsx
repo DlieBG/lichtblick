@@ -13,7 +13,7 @@ import {
   PanelRight24Regular,
   SlideAdd24Regular,
 } from "@fluentui/react-icons";
-import { Avatar, IconButton, Tooltip } from "@mui/material";
+import { Avatar, Badge, IconButton, Tooltip } from "@mui/material";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import tc from "tinycolor2";
@@ -44,6 +44,7 @@ import { CustomWindowControls, CustomWindowControlsProps } from "./CustomWindowC
 import { DataSource } from "./DataSource";
 import { NetworkStatusIndicator } from "./NetworkStatusIndicator";
 import { SettingsMenu } from "./SettingsMenu";
+import { useAuth } from "react-oidc-context";
 
 const useStyles = makeStyles<{ debugDragRegion?: boolean }, "avatar">()((
   theme,
@@ -199,6 +200,8 @@ export function AppBar(props: AppBarProps): React.JSX.Element {
   const userMenuOpen = Boolean(userAnchorEl);
   const panelMenuOpen = Boolean(panelAnchorEl);
 
+  const auth = useAuth();
+
   return (
     <>
       <AppBarContainer onDoubleClick={onDoubleClick} leftInset={leftInset}>
@@ -311,7 +314,13 @@ export function AppBar(props: AppBarProps): React.JSX.Element {
                   }}
                   data-testid="user-button"
                 >
-                  <Avatar className={classes.avatar} variant="rounded" />
+                  <Badge
+                    color={auth.isAuthenticated ? "success" : "error"}
+                    overlap="circular"
+                    badgeContent=" "
+                  >
+                    <Avatar className={classes.avatar} variant="rounded" />
+                  </Badge>
                 </IconButton>
               </Tooltip>
               {showCustomWindowControls && (
